@@ -12,9 +12,8 @@ import java.util.Set;
 
 public class StudyDashboard {
 
-    private Set<String> usernames = new HashSet<>();
-
-    private Set<String> reviews = new HashSet<>();
+    //record를 사용하도록 리팩토링
+    private Set<StudyReview> studyReviews = new HashSet<>();
 
     /**
      * 스터디 리뷰 이슈에 작성되어 있는 리뷰어 목록과 리뷰를 읽어옵니다.
@@ -27,23 +26,20 @@ public class StudyDashboard {
 
         List<GHIssueComment> reviews = issue.getComments();
         for (GHIssueComment review : reviews) {
-            usernames.add(review.getUserName());
-            this.reviews.add(review.getBody());
+            studyReviews.add(new StudyReview(review.getUserName(), review.getBody()));
+
+ //           this.reviews.add(review.getBody());
         }
     }
 
-    public Set<String> getUsernames() {
-        return usernames;
+    public Set<StudyReview> getStudyReviews() {
+        return studyReviews;
     }
 
-    public Set<String> getReviews() {
-        return reviews;
-    }
 
     public static void main(String[] args) throws IOException {
         StudyDashboard studyDashboard = new StudyDashboard();
         studyDashboard.loadReviews();
-        studyDashboard.getUsernames().forEach(System.out::println);
-        studyDashboard.getReviews().forEach(System.out::println);
+        studyDashboard.getStudyReviews().forEach(System.out::println);
     }
 }
