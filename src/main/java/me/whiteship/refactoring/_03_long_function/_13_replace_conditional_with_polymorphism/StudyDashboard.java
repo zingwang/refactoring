@@ -4,6 +4,7 @@ import org.kohsuke.github.GHIssue;
 import org.kohsuke.github.GHIssueComment;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
+import org.yaml.snakeyaml.error.Mark;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,7 +30,8 @@ public class StudyDashboard {
 
     private void print() throws IOException, InterruptedException {
         checkGithubIssues(getGhRepository());
-        new StudyPrinter(this.totalNumberOfEvents, this.participants, PrinterMode.MARKDOWN).execute();
+        new CvsPrinter(this.totalNumberOfEvents, this.participants).execute();
+        //new MarkDownPrinter(this.totalNumberOfEvents, this.participants).execute();
     }
 
     private GHRepository getGhRepository() throws IOException {
