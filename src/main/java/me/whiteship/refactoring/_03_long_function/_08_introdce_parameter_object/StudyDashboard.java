@@ -92,7 +92,7 @@ public class StudyDashboard {
     }
 
     private String getMarkdownForParticipant( Participant p) {
-        return String.format("| %s %s | %.2f%% |\n", p.username(), checkMark(p, this.totalNumberOfEvents), getRate(totalNumberOfEvents, p));
+        return String.format("| %s %s | %.2f%% |\n", p.username(), checkMark(p, this.totalNumberOfEvents), getRate( p));
     }
 
     /**
