@@ -6,7 +6,17 @@ public class CustomerContract {
 
     private LocalDate startDate;
 
-    public CustomerContract(LocalDate startDate) {
+    public double getDiscountRate() {
+        return discountRate;
+    }
+
+    public void setDiscountRate(double discountRate) {
+        this.discountRate = discountRate;
+    }
+
+    private double discountRate;
+    public CustomerContract(LocalDate startDate, double discountRate) {
         this.startDate = startDate;
+        this.discountRate = discountRate;
     }
 }
