@@ -12,7 +12,12 @@ public class Customer {
         return discountRate;
     }
 
-    public void setDiscountRate(Double discountRate) {
+    public void setDiscountRate(Double discountRate)
+    {
+        assert discountRate != null && discountRate > 0;
+        if(discountRate != null && discountRate > 0){
+            throw new IllegalArgumentException(discountRate+" can't be minus.");
+        }
         this.discountRate = discountRate;
     }
 }
